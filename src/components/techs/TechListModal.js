@@ -15,6 +15,11 @@ const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
       <div className='modal-content'>
         <h4>Technician List</h4>
         <ul className='collection'>
+          {!loading && techs !== null && (
+            <li>
+              <div className='center'>No Technician Found</div>
+            </li>
+          )}
           {!loading &&
             techs !== null &&
             techs.map(tech => <TechItem tech={tech} key={tech.id} />)}
@@ -33,7 +38,4 @@ const mapStateToProps = state => ({
   tech: state.tech
 });
 
-export default connect(
-  mapStateToProps,
-  { getTechs }
-)(TechListModal);
+export default connect(mapStateToProps, { getTechs })(TechListModal);
